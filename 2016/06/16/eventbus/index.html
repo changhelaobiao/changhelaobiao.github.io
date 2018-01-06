@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>EventBus事件总线框架 | 长河老表的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1、简述：EventBus是一款针对Android优化的发布（publish）/订阅（subscribe）事件总线。主要功能是替代Intent,Handler,BroadCast在Fragment，Activity，Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦。">
+<meta name="keywords" content="eventbus">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EventBus事件总线框架">
+<meta property="og:url" content="https://changhelaobiao.github.io/2016/06/16/eventbus/index.html">
+<meta property="og:site_name" content="长河老表的博客">
+<meta property="og:description" content="1、简述：EventBus是一款针对Android优化的发布（publish）/订阅（subscribe）事件总线。主要功能是替代Intent,Handler,BroadCast在Fragment，Activity，Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-05-29T14:30:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EventBus事件总线框架">
+<meta name="twitter:description" content="1、简述：EventBus是一款针对Android优化的发布（publish）/订阅（subscribe）事件总线。主要功能是替代Intent,Handler,BroadCast在Fragment，Activity，Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦。">
+  
+    <link rel="alternative" href="/atom.xml" title="长河老表的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="https://raw.githubusercontent.com/changhelaobiao/changhelaobiao.github.io/master/img/head.jpg" class="js-avatar show">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">长河老表</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/changhelaobiao" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/2806010014/info" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="mailto:liaopeixin@zshto.com" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/EventBus/" style="font-size: 10px;">EventBus</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/OkHttp/" style="font-size: 10px;">OkHttp</a> <a href="/tags/Retrofit/" style="font-size: 10px;">Retrofit</a> <a href="/tags/RxJava/" style="font-size: 10px;">RxJava</a> <a href="/tags/eventbus/" style="font-size: 10px;">eventbus</a> <a href="/tags/webView/" style="font-size: 10px;">webView</a> <a href="/tags/个人总结/" style="font-size: 10px;">个人总结</a> <a href="/tags/内存泄漏/" style="font-size: 10px;">内存泄漏</a> <a href="/tags/年终总结/" style="font-size: 10px;">年终总结</a> <a href="/tags/毕业/" style="font-size: 10px;">毕业</a> <a href="/tags/迁移部署/" style="font-size: 10px;">迁移部署</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://liaohuqiu.net/">秋百万</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.daimajia.com/">代码家</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.trinea.cn/">Trinea</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/guolin_blog">郭霖</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/singwhatiwanna">任玉刚</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://p.codekk.com/">codekk</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://stormzhang.com/">Stormzhang</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/luoshengyang">老罗</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.kymjs.com/">张涛</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.ruanyifeng.com/blog/">阮一峰</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">心怀正气，修身养性！S&amp;X</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">长河老表</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="https://raw.githubusercontent.com/changhelaobiao/changhelaobiao.github.io/master/img/head.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">长河老表</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/changhelaobiao" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/2806010014/info" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="mailto:liaopeixin@zshto.com" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-eventbus" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/16/eventbus/" class="article-date">
+  	<time datetime="2016-06-16T08:47:20.000Z" itemprop="datePublished">2016-06-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      EventBus事件总线框架
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eventbus/">eventbus</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、简述：<br>EventBus是一款针对Android优化的发布（publish）/订阅（subscribe）事件总线。主要功能是替代Intent,Handler,BroadCast在Fragment，Activity，Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦。<br><a id="more"></a><br>2、注册方法：<br>EventBus.getDefault().register(this);// 订阅<br>3、反注册：<br>EventBus.getDefault().unregister(this);// 解除<br>4、接收回调：<br>1)、onEvent<br>如果使用onEvent作为订阅函数，那么该事件在哪个线程发布出来的，onEvent就会在这个线程中运行，也就是说发布事件和接收事件线程在同一个线程。使用这个方法时，在onEvent方法中不能执行耗时操作，如果执行耗时操作容易导致事件分发延迟。<br>2)、onEventMainThread<br>如果使用onEventMainThread作为订阅函数，那么不论事件是在哪个线程中发布出来的，onEventMainThread都会在UI线程中执行，接收事件就会在UI线程中运行，这个在Android中是非常有用的，因为在Android中只能在UI线程中跟新UI，所以在onEvnetMainThread方法中是不能执行耗时操作的。<br>3)、onEventBackground<br>如果使用onEventBackgrond作为订阅函数，那么如果事件是在UI线程中发布出来的，那么onEventBackground就会在子线程中运行，如果事件本来就是子线程中发布出来的，那么onEventBackground函数直接在该子线程中执行。<br>4)、onEventAsync<br>使用这个函数作为订阅函数，那么无论事件在哪个线程发布，都会创建新的子线程在执行onEventAsync.<br>5、发送事件：<br>EventBus.getDefault().post(Object);</p>
+<p>Demo讲解：<br>发送事件：<br>@Override<br>    public void onClick(View v) {<br>        int id = v.getId();<br>        switch (id) {<br>            case R.id.btnEventOne:<br>                EventBus.getDefault().post(new PostEvent(EventConstants.EVENT_TYPE_ONE, new User(“张三”, 23, “男”)));<br>                break;<br>            case R.id.btnEventTwo:<br>                EventBus.getDefault().post(new PostEvent(EventConstants.EVENT_TYPE_TWO, new User(“丽丽”, 20, “女”)));<br>                break;<br>            case R.id.btnEventThree:<br>                EventBus.getDefault().post(new PostEvent(EventConstants.EVENT_TYPE_THREE, new Book(“Android开发艺术探索”, “任玉刚”, “IT”)));<br>                break;<br>        }<br>    }</p>
+<p>接收并处理事件：<br>@Subscribe<br>    public void onEventMainThread(PostEvent event) {<br>        if (event != null) {<br>            int type = event.getType();<br>            switch (type) {<br>                case EventConstants.EVENT_TYPE_ONE:<br>                    User user = (User) event.getData();<br>                    textUser1.setText(“事件一:” + user.toString());<br>                    break;<br>                case EventConstants.EVENT_TYPE_TWO:<br>                    User user1 = (User) event.getData();<br>                    textUser2.setText(“事件二:” + user1.toString());<br>                    break;<br>                case EventConstants.EVENT_TYPE_THREE:<br>                    Book book = (Book) event.getData();<br>                    textUser3.setText(“事件三:” + book.toString());<br>                    break;<br>            }<br>        }<br>    }<br>备注：<br>1、<a href="https://github.com/greenrobot/EventBus" target="_blank" rel="noopener">https://github.com/greenrobot/EventBus</a><br>2、注意处理事件的函数上面加上@Subscribe，否者会报Bug:Subscriber class com.lpx.eventbusdemo.MainActivity and its super classes have no public methods with the @Subscribe annotation<br>3、PostEvent是自定义的类、这是最妙的地方、最关键的地方。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/01/08/my2016/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          再见2016
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/15/okhttp/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">网络框架之OkHttp</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 长河老表
+    	</div>
+		<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259553496'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259553496' type='text/javascript'%3E%3C/script%3E"));</script>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="//7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
