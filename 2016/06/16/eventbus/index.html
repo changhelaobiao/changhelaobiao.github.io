@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="长河老表的博客">
 <meta property="og:description" content="1、简述：EventBus是一款针对Android优化的发布（publish）/订阅（subscribe）事件总线。主要功能是替代Intent,Handler,BroadCast在Fragment，Activity，Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-07T07:21:21.000Z">
+<meta property="og:updated_time" content="2018-01-07T07:22:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="EventBus事件总线框架">
 <meta name="twitter:description" content="1、简述：EventBus是一款针对Android优化的发布（publish）/订阅（subscribe）事件总线。主要功能是替代Intent,Handler,BroadCast在Fragment，Activity，Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦。">
@@ -283,7 +283,7 @@
             }
         }
     }
-</code></pre><h5 id="备注："><a href="#备注：" class="headerlink" title="备注："></a>备注：</h5><h5 id="1、https-github-com-greenrobot-EventBus"><a href="#1、https-github-com-greenrobot-EventBus" class="headerlink" title="1、https://github.com/greenrobot/EventBus"></a>1、<a href="https://github.com/greenrobot/EventBus" target="_blank" rel="noopener">https://github.com/greenrobot/EventBus</a></h5><h5 id="2、注意处理事件的函数上面加上-Subscribe，否者会报Bug-Subscriber-class-com-lpx-eventbusdemo-MainActivity-and-its-super-classes-have-no-public-methods-with-the-Subscribe-annotation"><a href="#2、注意处理事件的函数上面加上-Subscribe，否者会报Bug-Subscriber-class-com-lpx-eventbusdemo-MainActivity-and-its-super-classes-have-no-public-methods-with-the-Subscribe-annotation" class="headerlink" title="2、注意处理事件的函数上面加上@Subscribe，否者会报Bug:Subscriber class com.lpx.eventbusdemo.MainActivity and its super classes have no public methods with the @Subscribe annotation"></a>2、注意处理事件的函数上面加上@Subscribe，否者会报Bug:Subscriber class com.lpx.eventbusdemo.MainActivity and its super classes have no public methods with the @Subscribe annotation</h5><h5 id="3、PostEvent是自定义的类、这是最妙的地方、最关键的地方。"><a href="#3、PostEvent是自定义的类、这是最妙的地方、最关键的地方。" class="headerlink" title="3、PostEvent是自定义的类、这是最妙的地方、最关键的地方。"></a>3、PostEvent是自定义的类、这是最妙的地方、最关键的地方。</h5>
+</code></pre><h5 id="备注："><a href="#备注：" class="headerlink" title="备注："></a>备注：</h5><h5 id="1、https-github-com-greenrobot-EventBus"><a href="#1、https-github-com-greenrobot-EventBus" class="headerlink" title="1、https://github.com/greenrobot/EventBus"></a>1、<a href="https://github.com/greenrobot/EventBus" target="_blank" rel="noopener">https://github.com/greenrobot/EventBus</a></h5><h5 id="2、注意处理事件的函数上面加上-Subscribe，否者会报如下：Bug-Subscriber-class-com-lpx-eventbusdemo-MainActivity-and-its-super-classes-have-no-public-methods-with-the-Subscribe-annotation"><a href="#2、注意处理事件的函数上面加上-Subscribe，否者会报如下：Bug-Subscriber-class-com-lpx-eventbusdemo-MainActivity-and-its-super-classes-have-no-public-methods-with-the-Subscribe-annotation" class="headerlink" title="2、注意处理事件的函数上面加上@Subscribe，否者会报如下：Bug:Subscriber class com.lpx.eventbusdemo.MainActivity and its super classes have no public methods with the @Subscribe annotation"></a>2、注意处理事件的函数上面加上@Subscribe，否者会报如下：<br>Bug:Subscriber class com.lpx.eventbusdemo.MainActivity and its super classes have no public methods with the @Subscribe annotation</h5><h5 id="3、PostEvent是自定义的类、这是最妙的地方、最关键的地方。"><a href="#3、PostEvent是自定义的类、这是最妙的地方、最关键的地方。" class="headerlink" title="3、PostEvent是自定义的类、这是最妙的地方、最关键的地方。"></a>3、PostEvent是自定义的类、这是最妙的地方、最关键的地方。</h5>
       
     </div>
     

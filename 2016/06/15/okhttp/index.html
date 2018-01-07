@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="长河老表的博客">
 <meta property="og:description" content="今天看了几篇关于OkHttp网络框架的博客，并且自己写了Demo将博客中的代码应用了进去，和大家一起分享一下：大家也可以借鉴以下两位博主的博客： http://blog.csdn.net/u010046908/article/details/50614615 http://blog.csdn.net/lmj623565791/article/details/47911083">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-05-29T14:35:18.000Z">
+<meta property="og:updated_time" content="2018-01-07T07:40:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络框架之OkHttp">
 <meta name="twitter:description" content="今天看了几篇关于OkHttp网络框架的博客，并且自己写了Demo将博客中的代码应用了进去，和大家一起分享一下：大家也可以借鉴以下两位博主的博客： http://blog.csdn.net/u010046908/article/details/50614615 http://blog.csdn.net/lmj623565791/article/details/47911083">
@@ -249,50 +249,50 @@
 <li><p><a href="http://blog.csdn.net/lmj623565791/article/details/47911083" target="_blank" rel="noopener">http://blog.csdn.net/lmj623565791/article/details/47911083</a></p>
 <a id="more"></a>
 <h2 id="核心工具类-OkHttpUtils-class"><a href="#核心工具类-OkHttpUtils-class" class="headerlink" title="核心工具类:OkHttpUtils.class"></a>核心工具类:OkHttpUtils.class</h2><h2 id="辅助工具类-JsonUtils-class"><a href="#辅助工具类-JsonUtils-class" class="headerlink" title="辅助工具类:JsonUtils.class"></a>辅助工具类:JsonUtils.class</h2><h2 id="快速Json解析库Gson"><a href="#快速Json解析库Gson" class="headerlink" title="快速Json解析库Gson"></a>快速Json解析库Gson</h2><h2 id="发起一个Get请求"><a href="#发起一个Get请求" class="headerlink" title="发起一个Get请求:"></a>发起一个Get请求:</h2><p>  private void loadDataOfGet() {</p>
-<pre><code> OkHttpUtils.get(&quot;https://www.baidu.com/&quot;, new OkHttpUtils.ResultCallback&lt;String&gt;() {
-     @Override
-     public void onSuccess(String response) {
-         Log.d(&quot;---onSuccess---&gt;&quot;, &quot;----response---&gt;&quot; + response.toString());
-     }
+<pre><code>OkHttpUtils.get(&quot;https://www.baidu.com/&quot;, new OkHttpUtils.ResultCallback&lt;String&gt;() {
+                @Override
+                public void onSuccess(String response) {
+                    Log.d(&quot;---onSuccess---&gt;&quot;, &quot;----response---&gt;&quot; + response.toString());
+                }
 
-     @Override
-     public void onFailure(Exception e) {
+                @Override
+                public void onFailure(Exception e) {
 
-    }
-});
+                }
+            });        
 </code></pre><p>  }</p>
 <h2 id="发起一个Post请求"><a href="#发起一个Post请求" class="headerlink" title="发起一个Post请求:"></a>发起一个Post请求:</h2><p>  private void loadDataOfPost() {</p>
-<pre><code>List&lt;OkHttpUtils.Param&gt; list = new ArrayList&lt;&gt;();
-list.add(new OkHttpUtils.Param(&quot;column&quot;, &quot;1&quot;));
-list.add(new OkHttpUtils.Param(&quot;PageSize&quot;, &quot;10&quot;));
-list.add(new OkHttpUtils.Param(&quot;pageIndex&quot;, &quot;1&quot;));
-OkHttpUtils.post(&quot;http://litchiapi.jstv.com/api/GetFeeds&quot;, new OkHttpUtils.ResultCallback&lt;NewsBean&gt;() {
-    @Override
-    public void onSuccess(NewsBean response) {
-       if (response != null) {
-            String status = response.getStatus();
-            if (TextUtils.isEmpty(status)) {
-                // 服务器code异常
-                Toast.makeText(MainActivity.this, &quot;服务器正在升级中...&quot;, Toast.LENGTH_SHORT).show();
-            } else if (status.equals(&quot;ok&quot;)) {
-                // UI线程
-                Toast.makeText(MainActivity.this, &quot;加载成功&quot;, Toast.LENGTH_SHORT).show();
-                textResult.setText(&quot;加载结果:&quot; + response.toString());
-            } else {
-                // 失败
-                Toast.makeText(MainActivity.this, status, Toast.LENGTH_SHORT).show();
+<pre><code>        List&lt;OkHttpUtils.Param&gt; list = new ArrayList&lt;&gt;();
+            list.add(new OkHttpUtils.Param(&quot;column&quot;, &quot;1&quot;));
+            list.add(new OkHttpUtils.Param(&quot;PageSize&quot;, &quot;10&quot;));
+            list.add(new OkHttpUtils.Param(&quot;pageIndex&quot;, &quot;1&quot;));
+            OkHttpUtils.post(&quot;http://litchiapi.jstv.com/api/GetFeeds&quot;, new OkHttpUtils.ResultCallback&lt;NewsBean&gt;() {
+                @Override
+                public void onSuccess(NewsBean response) {
+                if (response != null) {
+                    String status = response.getStatus();
+                        if (TextUtils.isEmpty(status)) {
+                            // 服务器code异常
+                            Toast.makeText(MainActivity.this, &quot;服务器正在升级中...&quot;, Toast.LENGTH_SHORT).show();
+                        } else if (status.equals(&quot;ok&quot;)) {
+                            // UI线程
+                            Toast.makeText(MainActivity.this, &quot;加载成功&quot;, Toast.LENGTH_SHORT).show();
+                            textResult.setText(&quot;加载结果:&quot; + response.toString());
+                        } else {
+                            // 失败
+                            Toast.makeText(MainActivity.this, status, Toast.LENGTH_SHORT).show();
+                        }
+                }
             }
-        }
-    }
 
-    @Override
-    public void onFailure(Exception e) {
-        Toast.makeText(MainActivity.this, &quot;网络连接失败，请检查网络连接&quot;, Toast.LENGTH_SHORT).show();
-        e.printStackTrace();
-    }
-}, list);
-</code></pre><p>  }</p>
-<h3 id="有没有觉得So-Easy"><a href="#有没有觉得So-Easy" class="headerlink" title="有没有觉得So Easy."></a>有没有觉得So Easy.</h3><h3 id="另外Demo中用到了Logger库，体验体验哦-https-github-com-orhanobut-logger"><a href="#另外Demo中用到了Logger库，体验体验哦-https-github-com-orhanobut-logger" class="headerlink" title="另外Demo中用到了Logger库，体验体验哦:https://github.com/orhanobut/logger"></a>另外Demo中用到了Logger库，体验体验哦:<a href="https://github.com/orhanobut/logger" target="_blank" rel="noopener">https://github.com/orhanobut/logger</a></h3><h2 id="不说了，直接上代码-https-github-com-changhelaobiao-OkHttpDemo"><a href="#不说了，直接上代码-https-github-com-changhelaobiao-OkHttpDemo" class="headerlink" title="不说了，直接上代码:https://github.com/changhelaobiao/OkHttpDemo"></a>不说了，直接上代码:<a href="https://github.com/changhelaobiao/OkHttpDemo" target="_blank" rel="noopener">https://github.com/changhelaobiao/OkHttpDemo</a></h2><h2 id="PS-小编项目中用的是Volley网络框架，有机会再跟大家分享。"><a href="#PS-小编项目中用的是Volley网络框架，有机会再跟大家分享。" class="headerlink" title="PS:小编项目中用的是Volley网络框架，有机会再跟大家分享。"></a>PS:小编项目中用的是Volley网络框架，有机会再跟大家分享。</h2></li>
+                @Override
+                public void onFailure(Exception e) {
+                    Toast.makeText(MainActivity.this, &quot;网络连接失败，请检查网络连接&quot;, Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+        }, list);
+}
+</code></pre><h3 id="有没有觉得So-Easy"><a href="#有没有觉得So-Easy" class="headerlink" title="有没有觉得So Easy."></a>有没有觉得So Easy.</h3><h3 id="另外Demo中用到了Logger库，体验体验哦-https-github-com-orhanobut-logger"><a href="#另外Demo中用到了Logger库，体验体验哦-https-github-com-orhanobut-logger" class="headerlink" title="另外Demo中用到了Logger库，体验体验哦:https://github.com/orhanobut/logger"></a>另外Demo中用到了Logger库，体验体验哦:<a href="https://github.com/orhanobut/logger" target="_blank" rel="noopener">https://github.com/orhanobut/logger</a></h3><h2 id="不说了，直接上代码-https-github-com-changhelaobiao-OkHttpDemo"><a href="#不说了，直接上代码-https-github-com-changhelaobiao-OkHttpDemo" class="headerlink" title="不说了，直接上代码:https://github.com/changhelaobiao/OkHttpDemo"></a>不说了，直接上代码:<a href="https://github.com/changhelaobiao/OkHttpDemo" target="_blank" rel="noopener">https://github.com/changhelaobiao/OkHttpDemo</a></h2><h2 id="PS-小编项目中用的是Volley网络框架，有机会再跟大家分享。"><a href="#PS-小编项目中用的是Volley网络框架，有机会再跟大家分享。" class="headerlink" title="PS:小编项目中用的是Volley网络框架，有机会再跟大家分享。"></a>PS:小编项目中用的是Volley网络框架，有机会再跟大家分享。</h2></li>
 </ul>
 
       
