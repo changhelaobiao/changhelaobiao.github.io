@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="长河老表的博客">
 <meta property="og:description" content="1、简述：EventBus是一款针对Android优化的发布（publish）/订阅（subscribe）事件总线。主要功能是替代Intent,Handler,BroadCast在Fragment，Activity，Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-05-29T14:30:34.000Z">
+<meta property="og:updated_time" content="2018-01-07T07:21:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="EventBus事件总线框架">
 <meta name="twitter:description" content="1、简述：EventBus是一款针对Android优化的发布（publish）/订阅（subscribe）事件总线。主要功能是替代Intent,Handler,BroadCast在Fragment，Activity，Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦。">
@@ -244,10 +244,46 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1、简述：<br>EventBus是一款针对Android优化的发布（publish）/订阅（subscribe）事件总线。主要功能是替代Intent,Handler,BroadCast在Fragment，Activity，Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦。<br><a id="more"></a><br>2、注册方法：<br>EventBus.getDefault().register(this);// 订阅<br>3、反注册：<br>EventBus.getDefault().unregister(this);// 解除<br>4、接收回调：<br>1)、onEvent<br>如果使用onEvent作为订阅函数，那么该事件在哪个线程发布出来的，onEvent就会在这个线程中运行，也就是说发布事件和接收事件线程在同一个线程。使用这个方法时，在onEvent方法中不能执行耗时操作，如果执行耗时操作容易导致事件分发延迟。<br>2)、onEventMainThread<br>如果使用onEventMainThread作为订阅函数，那么不论事件是在哪个线程中发布出来的，onEventMainThread都会在UI线程中执行，接收事件就会在UI线程中运行，这个在Android中是非常有用的，因为在Android中只能在UI线程中跟新UI，所以在onEvnetMainThread方法中是不能执行耗时操作的。<br>3)、onEventBackground<br>如果使用onEventBackgrond作为订阅函数，那么如果事件是在UI线程中发布出来的，那么onEventBackground就会在子线程中运行，如果事件本来就是子线程中发布出来的，那么onEventBackground函数直接在该子线程中执行。<br>4)、onEventAsync<br>使用这个函数作为订阅函数，那么无论事件在哪个线程发布，都会创建新的子线程在执行onEventAsync.<br>5、发送事件：<br>EventBus.getDefault().post(Object);</p>
-<p>Demo讲解：<br>发送事件：<br>@Override<br>    public void onClick(View v) {<br>        int id = v.getId();<br>        switch (id) {<br>            case R.id.btnEventOne:<br>                EventBus.getDefault().post(new PostEvent(EventConstants.EVENT_TYPE_ONE, new User(“张三”, 23, “男”)));<br>                break;<br>            case R.id.btnEventTwo:<br>                EventBus.getDefault().post(new PostEvent(EventConstants.EVENT_TYPE_TWO, new User(“丽丽”, 20, “女”)));<br>                break;<br>            case R.id.btnEventThree:<br>                EventBus.getDefault().post(new PostEvent(EventConstants.EVENT_TYPE_THREE, new Book(“Android开发艺术探索”, “任玉刚”, “IT”)));<br>                break;<br>        }<br>    }</p>
-<p>接收并处理事件：<br>@Subscribe<br>    public void onEventMainThread(PostEvent event) {<br>        if (event != null) {<br>            int type = event.getType();<br>            switch (type) {<br>                case EventConstants.EVENT_TYPE_ONE:<br>                    User user = (User) event.getData();<br>                    textUser1.setText(“事件一:” + user.toString());<br>                    break;<br>                case EventConstants.EVENT_TYPE_TWO:<br>                    User user1 = (User) event.getData();<br>                    textUser2.setText(“事件二:” + user1.toString());<br>                    break;<br>                case EventConstants.EVENT_TYPE_THREE:<br>                    Book book = (Book) event.getData();<br>                    textUser3.setText(“事件三:” + book.toString());<br>                    break;<br>            }<br>        }<br>    }<br>备注：<br>1、<a href="https://github.com/greenrobot/EventBus" target="_blank" rel="noopener">https://github.com/greenrobot/EventBus</a><br>2、注意处理事件的函数上面加上@Subscribe，否者会报Bug:Subscriber class com.lpx.eventbusdemo.MainActivity and its super classes have no public methods with the @Subscribe annotation<br>3、PostEvent是自定义的类、这是最妙的地方、最关键的地方。</p>
-
+        <h4 id="1、简述："><a href="#1、简述：" class="headerlink" title="1、简述："></a>1、简述：</h4><p>EventBus是一款针对Android优化的发布（publish）/订阅（subscribe）事件总线。<br>主要功能是替代Intent,Handler,BroadCast在Fragment，Activity，Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦。<br><a id="more"></a></p>
+<h4 id="2、注册方法："><a href="#2、注册方法：" class="headerlink" title="2、注册方法："></a>2、注册方法：</h4><pre><code>EventBus.getDefault().register(this);// 订阅
+</code></pre><h4 id="3、反注册："><a href="#3、反注册：" class="headerlink" title="3、反注册："></a>3、反注册：</h4><pre><code>EventBus.getDefault().unregister(this);// 解除
+</code></pre><h4 id="4、接收回调："><a href="#4、接收回调：" class="headerlink" title="4、接收回调："></a>4、接收回调：</h4><h5 id="1-、onEvent"><a href="#1-、onEvent" class="headerlink" title="1)、onEvent"></a>1)、onEvent</h5><h5 id="如果使用onEvent作为订阅函数，那么该事件在哪个线程发布出来的，onEvent就会在这个线程中运行，也就是说发布事件和接收事件线程在同一个线程。使用这个方法时，在onEvent方法中不能执行耗时操作，如果执行耗时操作容易导致事件分发延迟。"><a href="#如果使用onEvent作为订阅函数，那么该事件在哪个线程发布出来的，onEvent就会在这个线程中运行，也就是说发布事件和接收事件线程在同一个线程。使用这个方法时，在onEvent方法中不能执行耗时操作，如果执行耗时操作容易导致事件分发延迟。" class="headerlink" title="如果使用onEvent作为订阅函数，那么该事件在哪个线程发布出来的，onEvent就会在这个线程中运行，也就是说发布事件和接收事件线程在同一个线程。使用这个方法时，在onEvent方法中不能执行耗时操作，如果执行耗时操作容易导致事件分发延迟。"></a>如果使用onEvent作为订阅函数，那么该事件在哪个线程发布出来的，onEvent就会在这个线程中运行，也就是说发布事件和接收事件线程在同一个线程。使用这个方法时，在onEvent方法中不能执行耗时操作，如果执行耗时操作容易导致事件分发延迟。</h5><h5 id="2-、onEventMainThread"><a href="#2-、onEventMainThread" class="headerlink" title="2)、onEventMainThread"></a>2)、onEventMainThread</h5><h5 id="如果使用onEventMainThread作为订阅函数，那么不论事件是在哪个线程中发布出来的，onEventMainThread都会在UI线程中执行，接收事件就会在UI线程中运行，这个在Android中是非常有用的，因为在Android中只能在UI线程中跟新UI，所以在onEvnetMainThread方法中是不能执行耗时操作的。"><a href="#如果使用onEventMainThread作为订阅函数，那么不论事件是在哪个线程中发布出来的，onEventMainThread都会在UI线程中执行，接收事件就会在UI线程中运行，这个在Android中是非常有用的，因为在Android中只能在UI线程中跟新UI，所以在onEvnetMainThread方法中是不能执行耗时操作的。" class="headerlink" title="如果使用onEventMainThread作为订阅函数，那么不论事件是在哪个线程中发布出来的，onEventMainThread都会在UI线程中执行，接收事件就会在UI线程中运行，这个在Android中是非常有用的，因为在Android中只能在UI线程中跟新UI，所以在onEvnetMainThread方法中是不能执行耗时操作的。"></a>如果使用onEventMainThread作为订阅函数，那么不论事件是在哪个线程中发布出来的，onEventMainThread都会在UI线程中执行，接收事件就会在UI线程中运行，这个在Android中是非常有用的，因为在Android中只能在UI线程中跟新UI，所以在onEvnetMainThread方法中是不能执行耗时操作的。</h5><h5 id="3-、onEventBackground"><a href="#3-、onEventBackground" class="headerlink" title="3)、onEventBackground"></a>3)、onEventBackground</h5><h5 id="如果使用onEventBackgrond作为订阅函数，那么如果事件是在UI线程中发布出来的，那么onEventBackground就会在子线程中运行，如果事件本来就是子线程中发布出来的，那么onEventBackground函数直接在该子线程中执行。"><a href="#如果使用onEventBackgrond作为订阅函数，那么如果事件是在UI线程中发布出来的，那么onEventBackground就会在子线程中运行，如果事件本来就是子线程中发布出来的，那么onEventBackground函数直接在该子线程中执行。" class="headerlink" title="如果使用onEventBackgrond作为订阅函数，那么如果事件是在UI线程中发布出来的，那么onEventBackground就会在子线程中运行，如果事件本来就是子线程中发布出来的，那么onEventBackground函数直接在该子线程中执行。"></a>如果使用onEventBackgrond作为订阅函数，那么如果事件是在UI线程中发布出来的，那么onEventBackground就会在子线程中运行，如果事件本来就是子线程中发布出来的，那么onEventBackground函数直接在该子线程中执行。</h5><h5 id="4-、onEventAsync"><a href="#4-、onEventAsync" class="headerlink" title="4)、onEventAsync"></a>4)、onEventAsync</h5><h5 id="使用这个函数作为订阅函数，那么无论事件在哪个线程发布，都会创建新的子线程在执行onEventAsync"><a href="#使用这个函数作为订阅函数，那么无论事件在哪个线程发布，都会创建新的子线程在执行onEventAsync" class="headerlink" title="使用这个函数作为订阅函数，那么无论事件在哪个线程发布，都会创建新的子线程在执行onEventAsync."></a>使用这个函数作为订阅函数，那么无论事件在哪个线程发布，都会创建新的子线程在执行onEventAsync.</h5><h4 id="5、发送事件："><a href="#5、发送事件：" class="headerlink" title="5、发送事件："></a>5、发送事件：</h4><pre><code>EventBus.getDefault().post(Object);
+</code></pre><h4 id="Demo讲解："><a href="#Demo讲解：" class="headerlink" title="Demo讲解："></a>Demo讲解：</h4><h5 id="发送事件："><a href="#发送事件：" class="headerlink" title="发送事件："></a>发送事件：</h5><pre><code>@Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.btnEventOne:
+                EventBus.getDefault().post(new PostEvent(EventConstants.EVENT_TYPE_ONE, new User(&quot;张三&quot;, 23, &quot;男&quot;)));
+                break;
+            case R.id.btnEventTwo:
+                EventBus.getDefault().post(new PostEvent(EventConstants.EVENT_TYPE_TWO, new User(&quot;丽丽&quot;, 20, &quot;女&quot;)));
+                break;
+            case R.id.btnEventThree:
+                EventBus.getDefault().post(new PostEvent(EventConstants.EVENT_TYPE_THREE, new Book(&quot;Android开发艺术探索&quot;, &quot;任玉刚&quot;, &quot;IT&quot;)));
+                break;
+        }
+    }
+</code></pre><h5 id="接收并处理事件："><a href="#接收并处理事件：" class="headerlink" title="接收并处理事件："></a>接收并处理事件：</h5><pre><code>@Subscribe
+    public void onEventMainThread(PostEvent event) {
+        if (event != null) {
+            int type = event.getType();
+            switch (type) {
+                case EventConstants.EVENT_TYPE_ONE:
+                    User user = (User) event.getData();
+                    textUser1.setText(&quot;事件一:&quot; + user.toString());
+                    break;
+                case EventConstants.EVENT_TYPE_TWO:
+                    User user1 = (User) event.getData();
+                    textUser2.setText(&quot;事件二:&quot; + user1.toString());
+                    break;
+                case EventConstants.EVENT_TYPE_THREE:
+                    Book book = (Book) event.getData();
+                    textUser3.setText(&quot;事件三:&quot; + book.toString());
+                    break;
+            }
+        }
+    }
+</code></pre><h5 id="备注："><a href="#备注：" class="headerlink" title="备注："></a>备注：</h5><h5 id="1、https-github-com-greenrobot-EventBus"><a href="#1、https-github-com-greenrobot-EventBus" class="headerlink" title="1、https://github.com/greenrobot/EventBus"></a>1、<a href="https://github.com/greenrobot/EventBus" target="_blank" rel="noopener">https://github.com/greenrobot/EventBus</a></h5><h5 id="2、注意处理事件的函数上面加上-Subscribe，否者会报Bug-Subscriber-class-com-lpx-eventbusdemo-MainActivity-and-its-super-classes-have-no-public-methods-with-the-Subscribe-annotation"><a href="#2、注意处理事件的函数上面加上-Subscribe，否者会报Bug-Subscriber-class-com-lpx-eventbusdemo-MainActivity-and-its-super-classes-have-no-public-methods-with-the-Subscribe-annotation" class="headerlink" title="2、注意处理事件的函数上面加上@Subscribe，否者会报Bug:Subscriber class com.lpx.eventbusdemo.MainActivity and its super classes have no public methods with the @Subscribe annotation"></a>2、注意处理事件的函数上面加上@Subscribe，否者会报Bug:Subscriber class com.lpx.eventbusdemo.MainActivity and its super classes have no public methods with the @Subscribe annotation</h5><h5 id="3、PostEvent是自定义的类、这是最妙的地方、最关键的地方。"><a href="#3、PostEvent是自定义的类、这是最妙的地方、最关键的地方。" class="headerlink" title="3、PostEvent是自定义的类、这是最妙的地方、最关键的地方。"></a>3、PostEvent是自定义的类、这是最妙的地方、最关键的地方。</h5>
       
     </div>
     
