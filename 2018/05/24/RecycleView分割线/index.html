@@ -15,7 +15,7 @@
 <meta property="og:description" content="这里记录了如何给RecycleView添加分割线的方法，以及RecycleView如何显示成类似GridView的表格形式，以及表格的分割线添加方法。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://changhelaobiao.github.io/img/recycleviewdivider.jpeg">
-<meta property="og:updated_time" content="2018-05-24T10:48:05.000Z">
+<meta property="og:updated_time" content="2018-05-24T10:49:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RecycleView分割线">
 <meta name="twitter:description" content="这里记录了如何给RecycleView添加分割线的方法，以及RecycleView如何显示成类似GridView的表格形式，以及表格的分割线添加方法。">
@@ -258,8 +258,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">recycleView.setLayoutManager(new GridLayoutManager(getActivity(), 3, LinearLayoutManager.VERTICAL, false));</span><br><span class="line">recycleView.setItemAnimator(new DefaultItemAnimator());</span><br><span class="line">DividerItemDecoration horizontalDivider = new DividerItemDecoration(getActivity(), DividerItemDecoration.HORIZONTAL);</span><br><span class="line">DividerItemDecoration verticalDivider = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);</span><br><span class="line">horizontalDivider.setDrawable(getResources().getDrawable(R.drawable.divider_horizontal));</span><br><span class="line">verticalDivider.setDrawable(getResources().getDrawable(R.drawable.divider_vertical));  </span><br><span class="line">recycleView.addItemDecoration(horizontalDivider);</span><br><span class="line">recycleView.addItemDecoration(verticalDivider);</span><br></pre></td></tr></table></figure>
 <p>附上divider_horizontal.xml的代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:shape=&quot;rectangle&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;solid android:color=&quot;@color/border&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;size android:width=&quot;1px&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/shape&gt;</span><br></pre></td></tr></table></figure>
-<p>效果图如下所示：</p>
-<div align="center"><br><img src="/img/recycleviewdivider.jpeg" width="300" height="600"><br></div>
+<p>效果图如下所示：<br><img src="/img/recycleviewdivider.jpeg" alt=""></p>
+
       
     </div>
     
