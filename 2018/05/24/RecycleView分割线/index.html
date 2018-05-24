@@ -4,22 +4,22 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Retrofit | 长河老表的博客</title>
+  <title>RecycleView分割线 | 长河老表的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、Retrofit是什么？ A type-safe HTTP client for Android and Java  Retrofit是一个类似Google Volley的对OkHtto进行过封装的网络框架，使用起来非常的简单。Retrofit与okhttp共同出自于Square公司，retrofit就是对okhttp做了一层封装。把网络请求都交给给了Okhttp，我们只需要通过简单的配置就能">
-<meta name="keywords" content="Retrofit">
+  <meta name="description" content="这里记录了如何给RecycleView添加分割线的方法，以及RecycleView如何显示成类似GridView的表格形式，以及表格的分割线添加方法。">
+<meta name="keywords" content="RecycleView分割线,RecycleView表格显示,分割线">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Retrofit">
-<meta property="og:url" content="https://changhelaobiao.github.io/2017/05/29/Retrofit/index.html">
+<meta property="og:title" content="RecycleView分割线">
+<meta property="og:url" content="https://changhelaobiao.github.io/2018/05/24/RecycleView分割线/index.html">
 <meta property="og:site_name" content="长河老表的博客">
-<meta property="og:description" content="1、Retrofit是什么？ A type-safe HTTP client for Android and Java  Retrofit是一个类似Google Volley的对OkHtto进行过封装的网络框架，使用起来非常的简单。Retrofit与okhttp共同出自于Square公司，retrofit就是对okhttp做了一层封装。把网络请求都交给给了Okhttp，我们只需要通过简单的配置就能">
+<meta property="og:description" content="这里记录了如何给RecycleView添加分割线的方法，以及RecycleView如何显示成类似GridView的表格形式，以及表格的分割线添加方法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://raw.githubusercontent.com/changhelaobiao/changhelaobiao.github.io/master/img/retrofit.png">
-<meta property="og:updated_time" content="2017-05-29T14:40:10.000Z">
+<meta property="og:image" content="https://changhelaobiao.github.io/img/recycleviewdivider.jpeg">
+<meta property="og:updated_time" content="2018-05-24T10:34:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Retrofit">
-<meta name="twitter:description" content="1、Retrofit是什么？ A type-safe HTTP client for Android and Java  Retrofit是一个类似Google Volley的对OkHtto进行过封装的网络框架，使用起来非常的简单。Retrofit与okhttp共同出自于Square公司，retrofit就是对okhttp做了一层封装。把网络请求都交给给了Okhttp，我们只需要通过简单的配置就能">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/changhelaobiao/changhelaobiao.github.io/master/img/retrofit.png">
+<meta name="twitter:title" content="RecycleView分割线">
+<meta name="twitter:description" content="这里记录了如何给RecycleView添加分割线的方法，以及RecycleView如何显示成类似GridView的表格形式，以及表格的分割线添加方法。">
+<meta name="twitter:image" content="https://changhelaobiao.github.io/img/recycleviewdivider.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="长河老表的博客" type="application/atom+xml">
   
@@ -209,11 +209,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-Retrofit" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-RecycleView分割线" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/05/29/Retrofit/" class="article-date">
-  	<time datetime="2017-05-29T14:11:59.000Z" itemprop="datePublished">2017-05-29</time>
+      <a href="/2018/05/24/RecycleView分割线/" class="article-date">
+  	<time datetime="2018-05-24T10:30:40.000Z" itemprop="datePublished">2018-05-24</time>
 </a>
     </div>
   
@@ -226,7 +226,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Retrofit
+      RecycleView分割线
     </h1>
   
 
@@ -235,7 +235,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Retrofit/">Retrofit</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RecycleView分割线/">RecycleView分割线</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RecycleView表格显示/">RecycleView表格显示</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分割线/">分割线</a></li></ul>
 	</div>
 
         
@@ -246,62 +246,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1、Retrofit是什么？"><a href="#1、Retrofit是什么？" class="headerlink" title="1、Retrofit是什么？"></a>1、Retrofit是什么？</h2><blockquote>
-<p>A type-safe HTTP client for Android and Java</p>
-</blockquote>
-<h4 id="Retrofit是一个类似Google-Volley的对OkHtto进行过封装的网络框架，使用起来非常的简单。Retrofit与okhttp共同出自于Square公司，retrofit就是对okhttp做了一层封装。把网络请求都交给给了Okhttp，我们只需要通过简单的配置就能使用retrofit来进行网络请求了。"><a href="#Retrofit是一个类似Google-Volley的对OkHtto进行过封装的网络框架，使用起来非常的简单。Retrofit与okhttp共同出自于Square公司，retrofit就是对okhttp做了一层封装。把网络请求都交给给了Okhttp，我们只需要通过简单的配置就能使用retrofit来进行网络请求了。" class="headerlink" title="Retrofit是一个类似Google Volley的对OkHtto进行过封装的网络框架，使用起来非常的简单。Retrofit与okhttp共同出自于Square公司，retrofit就是对okhttp做了一层封装。把网络请求都交给给了Okhttp，我们只需要通过简单的配置就能使用retrofit来进行网络请求了。"></a>Retrofit是一个类似Google Volley的对OkHtto进行过封装的网络框架，使用起来非常的简单。Retrofit与okhttp共同出自于Square公司，retrofit就是对okhttp做了一层封装。把网络请求都交给给了Okhttp，我们只需要通过简单的配置就能使用retrofit来进行网络请求了。</h4><a id="more"></a>
-<h2 id="2、Retrofit如何使用？"><a href="#2、Retrofit如何使用？" class="headerlink" title="2、Retrofit如何使用？"></a>2、Retrofit如何使用？</h2><h4 id="1-添加Gradle依赖："><a href="#1-添加Gradle依赖：" class="headerlink" title="1)添加Gradle依赖："></a>1)添加Gradle依赖：</h4><pre><code>compile &apos;com.squareup.retrofit2:retrofit:2.0.0-beta4&apos;
-compile &apos;com.squareup.retrofit2:converter-gson:2.0.0-beta4&apos;
-</code></pre><h4 id="2-定义接口以及网络方法："><a href="#2-定义接口以及网络方法：" class="headerlink" title="2)定义接口以及网络方法："></a>2)定义接口以及网络方法：</h4><pre><code>public interface GitHubService {
-  @GET(&quot;users/{user}/repos&quot;)
-  Call&lt;List&lt;Repo&gt;&gt; listRepos(@Path(&quot;user&quot;) String user);
-}
-</code></pre><h4 id="3-实现接口和方法："><a href="#3-实现接口和方法：" class="headerlink" title="3)实现接口和方法："></a>3)实现接口和方法：</h4><pre><code>Retrofit retrofit = new Retrofit.Builder()
-    .baseUrl(&quot;https://api.github.com/&quot;)
-    .build();
-GitHubService service = retrofit.create(GitHubService.class);
-</code></pre><h4 id="4-利用接口的实现类生成的对象调用网络方法，获取数据："><a href="#4-利用接口的实现类生成的对象调用网络方法，获取数据：" class="headerlink" title="4)利用接口的实现类生成的对象调用网络方法，获取数据："></a>4)利用接口的实现类生成的对象调用网络方法，获取数据：</h4><pre><code>Call&lt;List&lt;Repo&gt;&gt; call= service.listRepos(&quot;octocat&quot;);
-call.enqueue(new Callback&lt;List&lt;Repo&gt;&gt;() {
-    @Override
-    public void onResponse(Response&lt;List&lt;Repo&gt;&gt; response) {
-// 数据
-    }
-    @Override
-    public void onFailure(Throwable t) {
-// 异常
-    }
-});
-</code></pre><h4 id="提示："><a href="#提示：" class="headerlink" title="提示："></a>提示：</h4><h4 id="Retrofit的网络访问支持同步和异步以及取消："><a href="#Retrofit的网络访问支持同步和异步以及取消：" class="headerlink" title="Retrofit的网络访问支持同步和异步以及取消："></a>Retrofit的网络访问支持同步和异步以及取消：</h4><h4 id="同步调用：call-execute"><a href="#同步调用：call-execute" class="headerlink" title="同步调用：call.execute();"></a>同步调用：call.execute();</h4><h4 id="异步调用：call-enqueue"><a href="#异步调用：call-enqueue" class="headerlink" title="异步调用：call.enqueue();"></a>异步调用：call.enqueue();</h4><h4 id="取消调用：call-cancel-。"><a href="#取消调用：call-cancel-。" class="headerlink" title="取消调用：call.cancel()。"></a>取消调用：call.cancel()。</h4><h2 id="3、Retrofit日志查看？"><a href="#3、Retrofit日志查看？" class="headerlink" title="3、Retrofit日志查看？"></a>3、Retrofit日志查看？</h2><pre><code>public class AppClient {
-    private static final int DEFAULT_TIMEOUT = 10;
-    private static Retrofit mRetrofit;
-
-    public static Retrofit getInstance() {
-        if (mRetrofit == null) {
-            mRetrofit = new Retrofit.Builder()
-                    .baseUrl(&quot;http://www.weather.com.cn/&quot;)
-                    .client(getClient())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-        }
-        return mRetrofit;
-    }
-
-    /**
-     * 自定义OkHttpClient:添加日志打印功能(可以在测试版本中开启、在正式版本中关闭)
-     *
-     * @return
-     */
-    private static OkHttpClient getClient() {
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor)
-                .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-                .build();
-        return okHttpClient;
-    }
-}
-</code></pre><h4 id="因为Retrofit是基于OkHttp的封装，我们还可以自定义一些网络配置，这里集成了日志输出框架，可以方便我们查看网络访问的日志，便于调试，非常好用，大家可以试试。"><a href="#因为Retrofit是基于OkHttp的封装，我们还可以自定义一些网络配置，这里集成了日志输出框架，可以方便我们查看网络访问的日志，便于调试，非常好用，大家可以试试。" class="headerlink" title="因为Retrofit是基于OkHttp的封装，我们还可以自定义一些网络配置，这里集成了日志输出框架，可以方便我们查看网络访问的日志，便于调试，非常好用，大家可以试试。"></a>因为Retrofit是基于OkHttp的封装，我们还可以自定义一些网络配置，这里集成了日志输出框架，可以方便我们查看网络访问的日志，便于调试，非常好用，大家可以试试。</h4><p><img src="https://raw.githubusercontent.com/changhelaobiao/changhelaobiao.github.io/master/img/retrofit.png"></p>
+        <h4 id="这里记录了如何给RecycleView添加分割线的方法，以及RecycleView如何显示成类似GridView的表格形式，以及表格的分割线添加方法。"><a href="#这里记录了如何给RecycleView添加分割线的方法，以及RecycleView如何显示成类似GridView的表格形式，以及表格的分割线添加方法。" class="headerlink" title="这里记录了如何给RecycleView添加分割线的方法，以及RecycleView如何显示成类似GridView的表格形式，以及表格的分割线添加方法。"></a>这里记录了如何给RecycleView添加分割线的方法，以及RecycleView如何显示成类似GridView的表格形式，以及表格的分割线添加方法。</h4><a id="more"></a>
+<p>方法一：在Adapter的Layout布局中添加一个View以达到分割线的效果；</p>
+<p>方法二：借助RecycleView的addItemDecoration方法实现；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));</span><br></pre></td></tr></table></figure>
+<p>同时，还可以自己定义分割线，包括图片或者颜色以及大小等，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DividerItemDecoration verticalDivider = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);</span><br><span class="line">verticalDivider.setDrawable(getResources().getDrawable(R.drawable.divider_vertical));</span><br></pre></td></tr></table></figure>
+<p>divider_vertical的xml如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:shape=&quot;rectangle&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;solid android:color=&quot;@color/border&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;size android:height=&quot;1px&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/shape&gt;</span><br></pre></td></tr></table></figure>
+<p>补充:有的时候需要把RecycleView当做GridView来使用，这肯定也是可以的，而且分割线的做法同上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">recycleView.setLayoutManager(new GridLayoutManager(getActivity(), 3, LinearLayoutManager.VERTICAL, false));</span><br><span class="line">recycleView.setItemAnimator(new DefaultItemAnimator());</span><br><span class="line">DividerItemDecoration horizontalDivider = new DividerItemDecoration(getActivity(), DividerItemDecoration.HORIZONTAL);</span><br><span class="line">DividerItemDecoration verticalDivider = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);</span><br><span class="line">horizontalDivider.setDrawable(getResources().getDrawable(R.drawable.divider_horizontal));</span><br><span class="line">verticalDivider.setDrawable(getResources().getDrawable(R.drawable.divider_vertical));  </span><br><span class="line">recycleView.addItemDecoration(horizontalDivider);</span><br><span class="line">recycleView.addItemDecoration(verticalDivider);</span><br></pre></td></tr></table></figure>
+<p>附上divider_horizontal.xml的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:shape=&quot;rectangle&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;solid android:color=&quot;@color/border&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;size android:width=&quot;1px&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/shape&gt;</span><br></pre></td></tr></table></figure>
+<p>效果图如下所示：<br><img src="/img/recycleviewdivider.jpeg" alt=""></p>
 
       
     </div>
@@ -311,18 +268,9 @@ call.enqueue(new Callback&lt;List&lt;Repo&gt;&gt;() {
     
 <nav id="article-nav">
   
-    <a href="/2017/05/30/eventbus2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          EventBus事件总线框架优化
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/01/08/my2016/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">再见2016</div>
+    <a href="/2018/05/24/Android-studio-3-0-查看手机文件系统的方法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android studio 3.0 查看手机文件系统的方法</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
