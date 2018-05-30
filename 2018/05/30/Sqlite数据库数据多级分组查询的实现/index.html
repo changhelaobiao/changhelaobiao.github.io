@@ -6,18 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Sqlite数据库数据多级分组查询的实现 | 长河老表的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="问题场景假设本地sqlite数据中存储有一批快递寄件数据，现要按日期将这组数据进行分组显示日期及数量，然后第二层再按快递公司进行分组显示快递公司及相应的数量，最后再显示某家快递公司某天的寄件明细。">
+  <meta name="description" content="问题场景假设本地sqlite数据中存储有一批快递数据，现要按日期将这组数据进行分组显示日期及数量，然后第二层再按快递公司进行分组显示快递公司及相应的数量，最后再显示某家快递公司某天的明细。">
 <meta name="keywords" content="sqlite数据库语句,多级分组查询">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sqlite数据库数据多级分组查询的实现">
 <meta property="og:url" content="https://changhelaobiao.github.io/2018/05/30/Sqlite数据库数据多级分组查询的实现/index.html">
 <meta property="og:site_name" content="长河老表的博客">
-<meta property="og:description" content="问题场景假设本地sqlite数据中存储有一批快递寄件数据，现要按日期将这组数据进行分组显示日期及数量，然后第二层再按快递公司进行分组显示快递公司及相应的数量，最后再显示某家快递公司某天的寄件明细。">
+<meta property="og:description" content="问题场景假设本地sqlite数据中存储有一批快递数据，现要按日期将这组数据进行分组显示日期及数量，然后第二层再按快递公司进行分组显示快递公司及相应的数量，最后再显示某家快递公司某天的明细。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-30T07:25:07.000Z">
+<meta property="og:updated_time" content="2018-05-30T07:26:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sqlite数据库数据多级分组查询的实现">
-<meta name="twitter:description" content="问题场景假设本地sqlite数据中存储有一批快递寄件数据，现要按日期将这组数据进行分组显示日期及数量，然后第二层再按快递公司进行分组显示快递公司及相应的数量，最后再显示某家快递公司某天的寄件明细。">
+<meta name="twitter:description" content="问题场景假设本地sqlite数据中存储有一批快递数据，现要按日期将这组数据进行分组显示日期及数量，然后第二层再按快递公司进行分组显示快递公司及相应的数量，最后再显示某家快递公司某天的明细。">
   
     <link rel="alternative" href="/atom.xml" title="长河老表的博客" type="application/atom+xml">
   
@@ -244,7 +244,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="问题场景"><a href="#问题场景" class="headerlink" title="问题场景"></a>问题场景</h3><p>假设本地sqlite数据中存储有一批快递寄件数据，现要按日期将这组数据进行分组显示日期及数量，然后第二层再按快递公司进行分组显示快递公司及相应的数量，最后再显示某家快递公司某天的寄件明细。</p>
+        <h3 id="问题场景"><a href="#问题场景" class="headerlink" title="问题场景"></a>问题场景</h3><p>假设本地sqlite数据中存储有一批快递数据，现要按日期将这组数据进行分组显示日期及数量，然后第二层再按快递公司进行分组显示快递公司及相应的数量，最后再显示某家快递公司某天的明细。</p>
 <a id="more"></a>
 <h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>容易得知，这里会涉及到三个不同的需求，会产生三个列表数据，需要三个数据库查询操作方法。</p>
 <h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>按日期数据分组汇总(最近7天的数据)</p>
