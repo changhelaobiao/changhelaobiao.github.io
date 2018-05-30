@@ -4,18 +4,20 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2018/3 | 长河老表的博客</title>
+  <title>Sqlite数据库数据多级分组查询的实现 | 长河老表的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="长河老表的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="长河老表的博客">
-<meta property="og:url" content="https://changhelaobiao.github.io/archives/2018/03/index.html">
+  <meta name="description" content="问题场景假设本地sqlite数据中存储有一批快递寄件数据，现要按日期将这组数据进行分组显示日期及数量，然后第二层再按快递公司进行分组显示快递公司及相应的数量，最后再显示某家快递公司某天的寄件明细。">
+<meta name="keywords" content="sqlite数据库语句，多级分组查询">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sqlite数据库数据多级分组查询的实现">
+<meta property="og:url" content="https://changhelaobiao.github.io/2018/05/30/Sqlite数据库数据多级分组查询的实现/index.html">
 <meta property="og:site_name" content="长河老表的博客">
-<meta property="og:description" content="长河老表的博客">
+<meta property="og:description" content="问题场景假设本地sqlite数据中存储有一批快递寄件数据，现要按日期将这组数据进行分组显示日期及数量，然后第二层再按快递公司进行分组显示快递公司及相应的数量，最后再显示某家快递公司某天的寄件明细。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-30T07:23:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="长河老表的博客">
-<meta name="twitter:description" content="长河老表的博客">
+<meta name="twitter:title" content="Sqlite数据库数据多级分组查询的实现">
+<meta name="twitter:description" content="问题场景假设本地sqlite数据中存储有一批快递寄件数据，现要按日期将这组数据进行分组显示日期及数量，然后第二层再按快递公司进行分组显示快递公司及相应的数量，最后再显示某家快递公司某天的寄件明细。">
   
     <link rel="alternative" href="/atom.xml" title="长河老表的博客" type="application/atom+xml">
   
@@ -205,53 +207,79 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-Sqlite数据库数据多级分组查询的实现" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/28/再见2017/" class="archive-article-date">
-  	<time datetime="2018-03-28T03:28:43.000Z" itemprop="datePublished">Mar 28</time>
+    <div class="article-meta">
+      <a href="/2018/05/30/Sqlite数据库数据多级分组查询的实现/" class="article-date">
+  	<time datetime="2018-05-30T07:21:22.000Z" itemprop="datePublished">2018-05-30</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/28/再见2017/">再见2017</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Sqlite数据库数据多级分组查询的实现
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/个人总结/">个人总结</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/年终总结/">年终总结</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sqlite数据库语句，多级分组查询/">sqlite数据库语句，多级分组查询</a></li></ul>
 	</div>
 
-          
+        
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+      </div>
+      
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="问题场景"><a href="#问题场景" class="headerlink" title="问题场景"></a>问题场景</h3><p>假设本地sqlite数据中存储有一批快递寄件数据，现要按日期将这组数据进行分组显示日期及数量，然后第二层再按快递公司进行分组显示快递公司及相应的数量，最后再显示某家快递公司某天的寄件明细。</p>
+<a id="more"></a>
+<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>容易得知，这里会涉及到三个不同的需求，会产生三个列表数据，需要三个数据库查询操作方法。</p>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>按日期数据分组汇总(最近7天的数据)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT date(createTime,&apos;unixepoch&apos;),count(_id) FROM postExpressData GROUP BY date(createTime,&apos;unixepoch&apos;) ORDER BY  createTime desc limit 7</span><br></pre></td></tr></table></figure>
+<p>按日期、公司数据分组汇总</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT companyId,companyName,count(_id) FROM postExpressData where date(createTime,&apos;unixepoch&apos;)=&apos;2017-09-07&apos;  GROUP BY companyId ORDER BY createTime desc</span><br></pre></td></tr></table></figure>
+<p>按日期、快递公司数据明细</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT expressId FROM postExpressData where date(createTime,&apos;unixepoch&apos;)=&apos;2017-09-07&apos; AND companyId=&apos;109&apos; ORDER BY createTime desc</span><br></pre></td></tr></table></figure>
+<p>以上是实现需求的核心SQL语句，只需要执行即可。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/24/RecycleView分割线/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">RecycleView分割线</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
 
 </div>
       <footer id="footer">
@@ -278,8 +306,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false
