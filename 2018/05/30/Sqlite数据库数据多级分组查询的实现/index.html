@@ -7,14 +7,14 @@
   <title>Sqlite数据库数据多级分组查询的实现 | 长河老表的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="问题场景假设本地sqlite数据中存储有一批快递寄件数据，现要按日期将这组数据进行分组显示日期及数量，然后第二层再按快递公司进行分组显示快递公司及相应的数量，最后再显示某家快递公司某天的寄件明细。">
-<meta name="keywords" content="sqlite数据库语句，多级分组查询">
+<meta name="keywords" content="sqlite数据库语句,多级分组查询">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sqlite数据库数据多级分组查询的实现">
 <meta property="og:url" content="https://changhelaobiao.github.io/2018/05/30/Sqlite数据库数据多级分组查询的实现/index.html">
 <meta property="og:site_name" content="长河老表的博客">
 <meta property="og:description" content="问题场景假设本地sqlite数据中存储有一批快递寄件数据，现要按日期将这组数据进行分组显示日期及数量，然后第二层再按快递公司进行分组显示快递公司及相应的数量，最后再显示某家快递公司某天的寄件明细。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-30T07:23:36.000Z">
+<meta property="og:updated_time" content="2018-05-30T07:25:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sqlite数据库数据多级分组查询的实现">
 <meta name="twitter:description" content="问题场景假设本地sqlite数据中存储有一批快递寄件数据，现要按日期将这组数据进行分组显示日期及数量，然后第二层再按快递公司进行分组显示快递公司及相应的数量，最后再显示某家快递公司某天的寄件明细。">
@@ -117,7 +117,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/EventBus/" style="font-size: 10px;">EventBus</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/OkHttp/" style="font-size: 10px;">OkHttp</a> <a href="/tags/RecycleView分割线/" style="font-size: 10px;">RecycleView分割线</a> <a href="/tags/RecycleView表格显示/" style="font-size: 10px;">RecycleView表格显示</a> <a href="/tags/Retrofit/" style="font-size: 10px;">Retrofit</a> <a href="/tags/RxJava/" style="font-size: 10px;">RxJava</a> <a href="/tags/eventbus/" style="font-size: 10px;">eventbus</a> <a href="/tags/sqlite数据库语句，多级分组查询/" style="font-size: 10px;">sqlite数据库语句，多级分组查询</a> <a href="/tags/webView/" style="font-size: 10px;">webView</a> <a href="/tags/个人总结/" style="font-size: 20px;">个人总结</a> <a href="/tags/内存泄漏/" style="font-size: 10px;">内存泄漏</a> <a href="/tags/分割线/" style="font-size: 10px;">分割线</a> <a href="/tags/年终总结/" style="font-size: 20px;">年终总结</a> <a href="/tags/查看手机文件系统/" style="font-size: 10px;">查看手机文件系统</a> <a href="/tags/毕业/" style="font-size: 10px;">毕业</a> <a href="/tags/迁移部署/" style="font-size: 10px;">迁移部署</a>
+						<a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/EventBus/" style="font-size: 10px;">EventBus</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/OkHttp/" style="font-size: 10px;">OkHttp</a> <a href="/tags/RecycleView分割线/" style="font-size: 10px;">RecycleView分割线</a> <a href="/tags/RecycleView表格显示/" style="font-size: 10px;">RecycleView表格显示</a> <a href="/tags/Retrofit/" style="font-size: 10px;">Retrofit</a> <a href="/tags/RxJava/" style="font-size: 10px;">RxJava</a> <a href="/tags/eventbus/" style="font-size: 10px;">eventbus</a> <a href="/tags/sqlite数据库语句/" style="font-size: 10px;">sqlite数据库语句</a> <a href="/tags/webView/" style="font-size: 10px;">webView</a> <a href="/tags/个人总结/" style="font-size: 20px;">个人总结</a> <a href="/tags/内存泄漏/" style="font-size: 10px;">内存泄漏</a> <a href="/tags/分割线/" style="font-size: 10px;">分割线</a> <a href="/tags/多级分组查询/" style="font-size: 10px;">多级分组查询</a> <a href="/tags/年终总结/" style="font-size: 20px;">年终总结</a> <a href="/tags/查看手机文件系统/" style="font-size: 10px;">查看手机文件系统</a> <a href="/tags/毕业/" style="font-size: 10px;">毕业</a> <a href="/tags/迁移部署/" style="font-size: 10px;">迁移部署</a>
 					</div>
 				</section>
 				
@@ -233,7 +233,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sqlite数据库语句，多级分组查询/">sqlite数据库语句，多级分组查询</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sqlite数据库语句/">sqlite数据库语句</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多级分组查询/">多级分组查询</a></li></ul>
 	</div>
 
         
