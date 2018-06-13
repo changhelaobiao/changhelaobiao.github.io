@@ -115,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/EventBus/" style="font-size: 10px;">EventBus</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/OkHttp/" style="font-size: 10px;">OkHttp</a> <a href="/tags/RecycleView分割线/" style="font-size: 10px;">RecycleView分割线</a> <a href="/tags/RecycleView表格显示/" style="font-size: 10px;">RecycleView表格显示</a> <a href="/tags/Retrofit/" style="font-size: 10px;">Retrofit</a> <a href="/tags/RxJava/" style="font-size: 10px;">RxJava</a> <a href="/tags/eventbus/" style="font-size: 10px;">eventbus</a> <a href="/tags/sqlite数据库语句/" style="font-size: 10px;">sqlite数据库语句</a> <a href="/tags/webView/" style="font-size: 10px;">webView</a> <a href="/tags/个人总结/" style="font-size: 20px;">个人总结</a> <a href="/tags/内存泄漏/" style="font-size: 10px;">内存泄漏</a> <a href="/tags/分割线/" style="font-size: 10px;">分割线</a> <a href="/tags/多级分组查询/" style="font-size: 10px;">多级分组查询</a> <a href="/tags/年终总结/" style="font-size: 20px;">年终总结</a> <a href="/tags/查看手机文件系统/" style="font-size: 10px;">查看手机文件系统</a> <a href="/tags/毕业/" style="font-size: 10px;">毕业</a> <a href="/tags/迁移部署/" style="font-size: 10px;">迁移部署</a>
+						<a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/EventBus/" style="font-size: 10px;">EventBus</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/OkHttp/" style="font-size: 10px;">OkHttp</a> <a href="/tags/RecycleView分割线/" style="font-size: 10px;">RecycleView分割线</a> <a href="/tags/RecycleView表格显示/" style="font-size: 10px;">RecycleView表格显示</a> <a href="/tags/Retrofit/" style="font-size: 10px;">Retrofit</a> <a href="/tags/RxJava/" style="font-size: 10px;">RxJava</a> <a href="/tags/eventbus/" style="font-size: 10px;">eventbus</a> <a href="/tags/sqlite数据库语句/" style="font-size: 10px;">sqlite数据库语句</a> <a href="/tags/webView/" style="font-size: 10px;">webView</a> <a href="/tags/个人总结/" style="font-size: 20px;">个人总结</a> <a href="/tags/内存泄漏/" style="font-size: 10px;">内存泄漏</a> <a href="/tags/分割线/" style="font-size: 10px;">分割线</a> <a href="/tags/多级分组查询/" style="font-size: 10px;">多级分组查询</a> <a href="/tags/年终总结/" style="font-size: 20px;">年终总结</a> <a href="/tags/时间日期转换/" style="font-size: 10px;">时间日期转换</a> <a href="/tags/查看手机文件系统/" style="font-size: 10px;">查看手机文件系统</a> <a href="/tags/毕业/" style="font-size: 10px;">毕业</a> <a href="/tags/迁移部署/" style="font-size: 10px;">迁移部署</a>
 					</div>
 				</section>
 				
@@ -206,6 +206,66 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-dateformate" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/06/13/dateformate/" class="article-date">
+  	<time datetime="2018-06-13T07:56:58.000Z" itemprop="datePublished">2018-06-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/13/dateformate/">多种格式的日期时间转换兼容</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>有的时候可能会遇到各种格式的时间表现形式，比如：2018-03-12 12:05:34、2018-03-12 12:05、2018-3-12 12:5:34、2018-03-12、2018/3/12 12:5:34、2018年03月12日 13时05分34秒等等这些形式的表现，如果需要对这种格式不确定的输入时间进行统一转换，肯定是要考虑到不同的形式进行不同的转换的，然后统一输出一种格式的表现形式，比如统一为这种表现形式：2018-03-12 12:05:34。</p>
+<h3 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">package com.example.toby.myapplication;</span><br><span class="line"></span><br><span class="line">import java.text.DateFormat;</span><br><span class="line">import java.text.SimpleDateFormat;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.regex.Pattern;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * author : toby</span><br><span class="line"> * e-mail : 13128826083@163.com</span><br><span class="line"> * time : 2018/2/2</span><br><span class="line"> * desc :</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class DateFormatUtil &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 格式化时间</span><br><span class="line">     *</span><br><span class="line">     * @param dateStr</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static String dateRegFormat(String dateStr) &#123;</span><br><span class="line">        HashMap&lt;String, String&gt; dateRegFormat = new HashMap&lt;&gt;();</span><br><span class="line">        // 2014年3月12日 13时5分34秒，2014-03-12 12:05:34，2014/3/12 12:5:34</span><br><span class="line">        dateRegFormat.put(&quot;^\\d&#123;4&#125;\\D+\\d&#123;1,2&#125;\\D+\\d&#123;1,2&#125;\\D+\\d&#123;1,2&#125;\\D+\\d&#123;1,2&#125;\\D+\\d&#123;1,2&#125;\\D*$&quot;, &quot;yyyy-MM-dd-HH-mm-ss&quot;);</span><br><span class="line"></span><br><span class="line">        // 2014-03-12 12:05，2014-3-12 12:5</span><br><span class="line">        dateRegFormat.put(&quot;^\\d&#123;4&#125;\\D+\\d&#123;1,2&#125;\\D+\\d&#123;1,2&#125;\\D+\\d&#123;1,2&#125;\\D+\\d&#123;1,2&#125;\\D*$&quot;, &quot;yyyy-MM-dd-HH-mm&quot;);</span><br><span class="line"></span><br><span class="line">        // 2014-03-12</span><br><span class="line">        dateRegFormat.put(&quot;^\\d&#123;4&#125;\\D+\\d&#123;1,2&#125;\\D+\\d&#123;1,2&#125;$&quot;, &quot;yyyy-MM-dd&quot;);</span><br><span class="line"></span><br><span class="line">        DateFormat formatter1 = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);</span><br><span class="line">        DateFormat formatter2;</span><br><span class="line">        String dateReplace;</span><br><span class="line">        String strSuccess = &quot;&quot;;</span><br><span class="line">        try &#123;</span><br><span class="line">            for (String key : dateRegFormat.keySet()) &#123;</span><br><span class="line">                if (Pattern.compile(key).matcher(dateStr).matches()) &#123;</span><br><span class="line">                    formatter2 = new SimpleDateFormat(dateRegFormat.get(key));</span><br><span class="line">                    dateReplace = dateStr.replaceAll(&quot;\\D+&quot;, &quot;-&quot;);</span><br><span class="line">                    strSuccess = formatter1.format(formatter2.parse(dateReplace));</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            System.err.println(&quot;---------日期格式无效-----------&quot; + dateStr);</span><br><span class="line">            throw new Exception(&quot;日期格式无效&quot;);</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            return strSuccess;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">private void testDateFormat() &#123;</span><br><span class="line">        String[] dateStrArray = new String[]&#123;</span><br><span class="line">                &quot;2018-03-12 12:05:34&quot;,</span><br><span class="line">                &quot;2018-03-12 12:05&quot;,</span><br><span class="line">                &quot;2018-3-12 12:5:34&quot;,</span><br><span class="line">                &quot;2018-3-12 12:5&quot;,</span><br><span class="line">                &quot;2018-3-12&quot;,</span><br><span class="line">                &quot;2018-03-12&quot;,</span><br><span class="line">                &quot;2018/03/12 12:05:34&quot;,</span><br><span class="line">                &quot;2018/3/12 12:5:34&quot;,</span><br><span class="line">                &quot;2018/03/12 12:05&quot;,</span><br><span class="line">                &quot;2018/3/12 12:5&quot;,</span><br><span class="line">                &quot;2018/03/12&quot;,</span><br><span class="line">                &quot;2018年3月12日 13时5分34秒&quot;,</span><br><span class="line">                &quot;2018年3月12日 13时5分&quot;,</span><br><span class="line">                &quot;2018年03月12日 13时05分34秒&quot;</span><br><span class="line">        &#125;;</span><br><span class="line">        for (int i = 0; i &lt; dateStrArray.length; i++) &#123;</span><br><span class="line">            Log.d(&quot;----index----&gt;&quot; + i, DateFormatUtil.dateRegFormat(dateStrArray[i]));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/img/dateformate.jpeg" alt=""></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/时间日期转换/">时间日期转换</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-Sqlite数据库数据多级分组查询的实现" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -733,69 +793,6 @@
       
         <p class="article-more-link">
           <a  href="/2017/05/30/eventbus2/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Retrofit" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/05/29/Retrofit/" class="article-date">
-  	<time datetime="2017-05-29T14:11:59.000Z" itemprop="datePublished">2017-05-29</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/29/Retrofit/">Retrofit</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、Retrofit是什么？"><a href="#1、Retrofit是什么？" class="headerlink" title="1、Retrofit是什么？"></a>1、Retrofit是什么？</h2><blockquote>
-<p>A type-safe HTTP client for Android and Java</p>
-</blockquote>
-<h4 id="Retrofit是一个类似Google-Volley的对OkHtto进行过封装的网络框架，使用起来非常的简单。Retrofit与okhttp共同出自于Square公司，retrofit就是对okhttp做了一层封装。把网络请求都交给给了Okhttp，我们只需要通过简单的配置就能使用retrofit来进行网络请求了。"><a href="#Retrofit是一个类似Google-Volley的对OkHtto进行过封装的网络框架，使用起来非常的简单。Retrofit与okhttp共同出自于Square公司，retrofit就是对okhttp做了一层封装。把网络请求都交给给了Okhttp，我们只需要通过简单的配置就能使用retrofit来进行网络请求了。" class="headerlink" title="Retrofit是一个类似Google Volley的对OkHtto进行过封装的网络框架，使用起来非常的简单。Retrofit与okhttp共同出自于Square公司，retrofit就是对okhttp做了一层封装。把网络请求都交给给了Okhttp，我们只需要通过简单的配置就能使用retrofit来进行网络请求了。"></a>Retrofit是一个类似Google Volley的对OkHtto进行过封装的网络框架，使用起来非常的简单。Retrofit与okhttp共同出自于Square公司，retrofit就是对okhttp做了一层封装。把网络请求都交给给了Okhttp，我们只需要通过简单的配置就能使用retrofit来进行网络请求了。</h4>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Retrofit/">Retrofit</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2017/05/29/Retrofit/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
