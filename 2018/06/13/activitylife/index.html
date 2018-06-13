@@ -6,19 +6,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Activity生命周期 | 长河老表的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="启动FirstActivity至界面可见123D/FirstActivity: ----onCreate---&amp;gt;D/FirstActivity: ----onStart---&amp;gt;D/FirstActivity: ----onResume---&amp;gt; 按物理返回键退出FirstActivity123D/FirstActivity: ----onPause---&amp;gt;D/FirstAct">
+  <meta name="description" content="梳理常见的交互下Activity的生命周期的执行顺序。">
 <meta name="keywords" content="Activity生命周期">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Activity生命周期">
 <meta property="og:url" content="https://changhelaobiao.github.io/2018/06/13/activitylife/index.html">
 <meta property="og:site_name" content="长河老表的博客">
-<meta property="og:description" content="启动FirstActivity至界面可见123D/FirstActivity: ----onCreate---&amp;gt;D/FirstActivity: ----onStart---&amp;gt;D/FirstActivity: ----onResume---&amp;gt; 按物理返回键退出FirstActivity123D/FirstActivity: ----onPause---&amp;gt;D/FirstAct">
+<meta property="og:description" content="梳理常见的交互下Activity的生命周期的执行顺序。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://changhelaobiao.github.io/img/activitylife.png">
-<meta property="og:updated_time" content="2018-06-13T09:08:53.000Z">
+<meta property="og:updated_time" content="2018-06-13T09:10:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Activity生命周期">
-<meta name="twitter:description" content="启动FirstActivity至界面可见123D/FirstActivity: ----onCreate---&amp;gt;D/FirstActivity: ----onStart---&amp;gt;D/FirstActivity: ----onResume---&amp;gt; 按物理返回键退出FirstActivity123D/FirstActivity: ----onPause---&amp;gt;D/FirstAct">
+<meta name="twitter:description" content="梳理常见的交互下Activity的生命周期的执行顺序。">
 <meta name="twitter:image" content="https://changhelaobiao.github.io/img/activitylife.png">
   
     <link rel="alternative" href="/atom.xml" title="长河老表的博客" type="application/atom+xml">
@@ -246,7 +246,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="启动FirstActivity至界面可见"><a href="#启动FirstActivity至界面可见" class="headerlink" title="启动FirstActivity至界面可见"></a>启动FirstActivity至界面可见</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">D/FirstActivity: ----onCreate---&gt;</span><br><span class="line">D/FirstActivity: ----onStart---&gt;</span><br><span class="line">D/FirstActivity: ----onResume---&gt;</span><br></pre></td></tr></table></figure>
+        <h3 id="梳理常见的交互下Activity的生命周期的执行顺序。"><a href="#梳理常见的交互下Activity的生命周期的执行顺序。" class="headerlink" title="梳理常见的交互下Activity的生命周期的执行顺序。"></a>梳理常见的交互下Activity的生命周期的执行顺序。</h3><a id="more"></a>
+<h3 id="启动FirstActivity至界面可见"><a href="#启动FirstActivity至界面可见" class="headerlink" title="启动FirstActivity至界面可见"></a>启动FirstActivity至界面可见</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">D/FirstActivity: ----onCreate---&gt;</span><br><span class="line">D/FirstActivity: ----onStart---&gt;</span><br><span class="line">D/FirstActivity: ----onResume---&gt;</span><br></pre></td></tr></table></figure>
 <h3 id="按物理返回键退出FirstActivity"><a href="#按物理返回键退出FirstActivity" class="headerlink" title="按物理返回键退出FirstActivity"></a>按物理返回键退出FirstActivity</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">D/FirstActivity: ----onPause---&gt;</span><br><span class="line">D/FirstActivity: ----onStop---&gt;</span><br><span class="line">D/FirstActivity: ----onDestroy---&gt;</span><br></pre></td></tr></table></figure>
 <h3 id="按Home键退出FirstActivity"><a href="#按Home键退出FirstActivity" class="headerlink" title="按Home键退出FirstActivity"></a>按Home键退出FirstActivity</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D/FirstActivity: ----onPause---&gt;</span><br><span class="line">D/FirstActivity: ----onStop---&gt;</span><br></pre></td></tr></table></figure>
 <h3 id="启动FirstActivity-然后再跳转至SecondActivity"><a href="#启动FirstActivity-然后再跳转至SecondActivity" class="headerlink" title="启动FirstActivity,然后再跳转至SecondActivity"></a>启动FirstActivity,然后再跳转至SecondActivity</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">D/FirstActivity: ----onCreate---&gt;</span><br><span class="line">D/FirstActivity: ----onStart---&gt;</span><br><span class="line">D/FirstActivity: ----onResume---&gt;</span><br><span class="line">D/FirstActivity: ----onPause---&gt;</span><br><span class="line">D/SecondActivity: ----onCreate---&gt;</span><br><span class="line">D/SecondActivity: ----onStart---&gt;</span><br><span class="line">D/SecondActivity: ----onResume---&gt;</span><br><span class="line">D/FirstActivity: ----onStop---&gt;</span><br></pre></td></tr></table></figure>

@@ -233,13 +233,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="启动FirstActivity至界面可见"><a href="#启动FirstActivity至界面可见" class="headerlink" title="启动FirstActivity至界面可见"></a>启动FirstActivity至界面可见</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">D/FirstActivity: ----onCreate---&gt;</span><br><span class="line">D/FirstActivity: ----onStart---&gt;</span><br><span class="line">D/FirstActivity: ----onResume---&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="按物理返回键退出FirstActivity"><a href="#按物理返回键退出FirstActivity" class="headerlink" title="按物理返回键退出FirstActivity"></a>按物理返回键退出FirstActivity</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">D/FirstActivity: ----onPause---&gt;</span><br><span class="line">D/FirstActivity: ----onStop---&gt;</span><br><span class="line">D/FirstActivity: ----onDestroy---&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="按Home键退出FirstActivity"><a href="#按Home键退出FirstActivity" class="headerlink" title="按Home键退出FirstActivity"></a>按Home键退出FirstActivity</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D/FirstActivity: ----onPause---&gt;</span><br><span class="line">D/FirstActivity: ----onStop---&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="启动FirstActivity-然后再跳转至SecondActivity"><a href="#启动FirstActivity-然后再跳转至SecondActivity" class="headerlink" title="启动FirstActivity,然后再跳转至SecondActivity"></a>启动FirstActivity,然后再跳转至SecondActivity</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">D/FirstActivity: ----onCreate---&gt;</span><br><span class="line">D/FirstActivity: ----onStart---&gt;</span><br><span class="line">D/FirstActivity: ----onResume---&gt;</span><br><span class="line">D/FirstActivity: ----onPause---&gt;</span><br><span class="line">D/SecondActivity: ----onCreate---&gt;</span><br><span class="line">D/SecondActivity: ----onStart---&gt;</span><br><span class="line">D/SecondActivity: ----onResume---&gt;</span><br><span class="line">D/FirstActivity: ----onStop---&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="注意：FirstActivity的onPause先于SecondActivity的onCreate方法执行，为了提高跳转效率，建议不要在onPause做过多耗时操作。"><a href="#注意：FirstActivity的onPause先于SecondActivity的onCreate方法执行，为了提高跳转效率，建议不要在onPause做过多耗时操作。" class="headerlink" title="注意：FirstActivity的onPause先于SecondActivity的onCreate方法执行，为了提高跳转效率，建议不要在onPause做过多耗时操作。"></a>注意：FirstActivity的onPause先于SecondActivity的onCreate方法执行，为了提高跳转效率，建议不要在onPause做过多耗时操作。</h5><h3 id="按返回键从SecondActivity回到FirstActivity"><a href="#按返回键从SecondActivity回到FirstActivity" class="headerlink" title="按返回键从SecondActivity回到FirstActivity"></a>按返回键从SecondActivity回到FirstActivity</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">D/SecondActivity: ----onPause---&gt;</span><br><span class="line">D/FirstActivity: ----onRestart---&gt;</span><br><span class="line">D/FirstActivity: ----onStart---&gt;</span><br><span class="line">D/FirstActivity: ----onResume---&gt;</span><br><span class="line">D/SecondActivity: ----onStop---&gt;</span><br><span class="line">D/SecondActivity: ----onDestroy---&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="Activity的完整生命周期"><a href="#Activity的完整生命周期" class="headerlink" title="Activity的完整生命周期"></a>Activity的完整生命周期</h5><p><img src="/img/activitylife.png" alt=""></p>
-
+        <h3 id="梳理常见的交互下Activity的生命周期的执行顺序。"><a href="#梳理常见的交互下Activity的生命周期的执行顺序。" class="headerlink" title="梳理常见的交互下Activity的生命周期的执行顺序。"></a>梳理常见的交互下Activity的生命周期的执行顺序。</h3>
       
     </div>
     
@@ -252,6 +246,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2018/06/13/activitylife/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
