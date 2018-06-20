@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://changhelaobiao.github.io/img/jni_7_1.png">
 <meta property="og:image" content="https://changhelaobiao.github.io/img/jni_7_2.png">
 <meta property="og:image" content="https://changhelaobiao.github.io/img/jni_7_3.png">
-<meta property="og:updated_time" content="2018-06-20T03:09:03.000Z">
+<meta property="og:updated_time" content="2018-06-20T03:10:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JNI简单入门">
 <meta name="twitter:description" content="JNI(Java Native Interface),java本地开发接口，JNI是一个协议，这个协议用来沟通java代码和外部的本地代码(C、C++),外部的C/C++代码也可以调用java代码。效率上，C/C++是本地语言，比java更高效，代码移植，复用现有C语言模块功能，提高代码的安全性，不易被反编译。">
@@ -267,8 +267,8 @@
 <h3 id="七、so库文件的使用"><a href="#七、so库文件的使用" class="headerlink" title="七、so库文件的使用"></a>七、so库文件的使用</h3><p>在项目中新建jniLibs目录，并件so库拷贝至该目录中，然后即可在Android项目中使用so库中的方法了。<br><img src="/img/jni_7_1.png" alt=""><br><img src="/img/jni_7_2.png" alt=""><br><img src="/img/jni_7_3.png" alt=""><br>备注：<br>CPU架构的种类有：armeabi，armeabi-v7a，x86，mips，arm64-v8a，mips64，x86_64<br>参考资料：<a href="http://www.jianshu.com/p/3494741f0ad1" target="_blank" rel="noopener">http://www.jianshu.com/p/3494741f0ad1</a></p>
 <h3 id="八、JNI与NDK的关系"><a href="#八、JNI与NDK的关系" class="headerlink" title="八、JNI与NDK的关系"></a>八、JNI与NDK的关系</h3><h4 id="JNI"><a href="#JNI" class="headerlink" title="JNI"></a>JNI</h4><h5 id="定义：Java-Native-Interface-即Java本地接口"><a href="#定义：Java-Native-Interface-即Java本地接口" class="headerlink" title="定义：Java Native Interface,即Java本地接口"></a>定义：Java Native Interface,即Java本地接口</h5><h5 id="作用：使得Java能够与本地其他类型语言-如C-C-进行交互"><a href="#作用：使得Java能够与本地其他类型语言-如C-C-进行交互" class="headerlink" title="作用：使得Java能够与本地其他类型语言(如C/C++)进行交互"></a>作用：使得Java能够与本地其他类型语言(如C/C++)进行交互</h5><blockquote>
 <p>即在Java代码里调用C、C++等语言的代码或C、C++代码调用Java代码</p>
-<h5 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h5><p>1、JNI是 Java 调用 Native 语言的一种特性；</p>
 </blockquote>
+<h5 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h5><p>1、JNI是 Java 调用 Native 语言的一种特性；</p>
 <p>2、JNI 是属于 Java 的，与 Android 无直接关系</p>
 <h4 id="NDK"><a href="#NDK" class="headerlink" title="NDK"></a>NDK</h4><h5 id="定义：Native-Development-Kit，是Android的一个工具包"><a href="#定义：Native-Development-Kit，是Android的一个工具包" class="headerlink" title="定义：Native Development Kit，是Android的一个工具包"></a>定义：Native Development Kit，是Android的一个工具包</h5><blockquote>
 <p>NDK是属于Android的，与Java并无直接关系</p>
